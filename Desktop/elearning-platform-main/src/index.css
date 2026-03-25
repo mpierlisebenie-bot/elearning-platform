@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary-50: #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;
+    --color-primary-400: #60a5fa;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1d4ed8;
+    --color-primary-800: #1e40af;
+    --color-primary-900: #1e3a8a;
+
+    --font-family-body: 'Source Sans 3', sans-serif;
+    --font-family-heading: 'Playfair Display', serif;
+}
+
+@layer base {
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Source Sans 3', sans-serif;
+        color: #1e293b;
+        background: #ffffff;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+        font-family: 'Playfair Display', serif;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center gap-2 px-6 py-3 bg-primary-700 text-white font-semibold rounded-lg
+        hover:bg-primary-800 active:bg-primary-900 transition-all duration-200
+        shadow-md hover:shadow-lg hover:-translate-y-0.5;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center gap-2 px-6 py-3 bg-white text-primary-700 font-semibold rounded-lg
+        border-2 border-primary-700 hover:bg-primary-50 transition-all duration-200;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center gap-2 px-4 py-2 text-primary-700 font-semibold rounded-lg
+        hover:bg-primary-50 transition-all duration-200;
+    }
+
+    .card {
+        @apply bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden;
+    }
+
+    .input-field {
+        @apply w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-800
+        placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500
+        focus:border-transparent transition-all duration-200;
+    }
+
+    .label {
+        @apply block text-sm font-semibold text-slate-700 mb-1.5;
+    }
+
+    .section-tag {
+        @apply inline-flex items-center gap-1.5 px-3 py-1 bg-primary-100 text-primary-700
+        text-xs font-semibold tracking-widest uppercase rounded-full;
+    }
+}
+
+@layer utilities {
+    .text-gradient {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-grid {
+        background-image:
+                linear-gradient(rgba(30, 64, 175, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 64, 175, 0.04) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+
+    .animate-delay-100 { animation-delay: 100ms; }
+    .animate-delay-200 { animation-delay: 200ms; }
+    .animate-delay-300 { animation-delay: 300ms; }
+    .animate-delay-400 { animation-delay: 400ms; }
+    .animate-delay-500 { animation-delay: 500ms; }
+
+    .opacity-0-init { opacity: 0; }
+}
