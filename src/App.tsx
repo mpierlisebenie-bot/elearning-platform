@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Login";
 import Layout from "./components/Layout.tsx";
 import Inscription from "./components/Inscription.tsx";
-
+import './App.css'
 import HomePage from "./components/HomePage.tsx";
 
 function App() {
