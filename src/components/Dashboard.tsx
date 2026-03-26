@@ -13,9 +13,7 @@ import {
     Pie,
 } from "recharts";
 
-/* ═══════════════════════════════════════════════
-   DONNÉES
-═══════════════════════════════════════════════ */
+
 const progressionData = [
     { month: "Jan", current: 3000,  prev: 2000 },
     { month: "Fév", current: 8000,  prev: 4000 },
@@ -169,7 +167,7 @@ function ProgressionSection() {
                 }}
             >
         <span style={{ fontSize: 13, fontWeight: 700, color: "#0f172a", whiteSpace: "nowrap" }}>
-          Pressions des étudiants
+          Progression des étudiants
         </span>
 
                 {(["Cours terminés par mois", "Temps d'apprentissage"] as Tab[]).map((t) => (
@@ -194,7 +192,7 @@ function ProgressionSection() {
 
                 <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 14 }}>
                     <LegendDot color="#94a3b8" dashed={false} label="Cette année" />
-                    <LegendDot color="#cbd5e1" dashed label="L'année dernière" />
+                    <LegendDot color="#cbd5e1" dashed={true} label="L'année dernière" />
                 </div>
             </div>
 
@@ -218,7 +216,12 @@ function ProgressionSection() {
                         ticks={[0, 10000, 20000, 30000]}
                     />
                     <Tooltip
-                        formatter={(v: number) => `${(v / 1000).toFixed(0)}k`}
+                        formatter={(v) => {
+                            if (typeof v === "number") {
+                                return `${(v / 1000).toFixed(0)}k`;
+                            }
+                            return v;
+                        }}
                         contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e2e8f0" }}
                     />
                     <Line
@@ -281,7 +284,12 @@ function SubjectChart() {
                         ticks={[0, 10000, 20000, 30000]}
                     />
                     <Tooltip
-                        formatter={(v: number) => `${(v / 1000).toFixed(0)}k`}
+                        formatter={(v) => {
+                            if (typeof v === "number") {
+                                return `${(v / 1000).toFixed(0)}k`;
+                            }
+                            return v;
+                        }}
                         contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e2e8f0" }}
                     />
                     <Bar dataKey="value" radius={[5, 5, 0, 0]}>
@@ -575,7 +583,7 @@ export default function Dashboard() {
             <div style={{ display: "flex", gap: 14, marginBottom: 16, flexWrap: "wrap" }}>
                 <StatCard label="Cours inscrits"     value="05" bg="#fce7f3" />
                 <StatCard label="Cours terminés"     value="08" bg="#fef9c3" />
-                <StatCard label="Nouveaux étudiants" value=""   bg="#dcfce7" />
+                <StatCard label="Nouveaux étudiants" value="12" bg="#dcfce7" />
                 <StatCard label="Étudiants actifs"   value="35" bg="#ede9fe" />
             </div>
 

@@ -7,6 +7,7 @@ import iconCertificats from "../assets/icons/certificats.png";
 import iconParametres from "../assets/icons/parametres.png";
 import iconDeconnexion from "../assets/icons/deconnexion.png";
 
+
 type NavItem = {
   label: string;
   icon: string;
@@ -30,102 +31,70 @@ type SidebarProps = {
 };
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
-  const [activeItem, setActiveItem] = useState("Profil");
+    const [activeItem, setActiveItem] = useState("Profil");
 
-  const NavButton = ({ item }: { item: NavItem }) => {
-    const isActive = activeItem === item.label;
+    const NavButton = ({ item }: { item: NavItem }) => {
+        const isActive = activeItem === item.label;
+        return (
+            <button
+                onClick={() => {
+                    setActiveItem(item.label);
+                    if (window.innerWidth < 768) onClose();
+                }}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 w-full group
+          ${isActive
+                    ? "bg-indigo-50 text-indigo-600 shadow-sm shadow-indigo-100/50"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"}`}
+            >
+                <img
+                    src={item.icon}
+                    alt={item.label}
+                    className={`w-5 h-5 object-contain transition-transform group-hover:scale-110 ${isActive ? "brightness-100" : "opacity-70 grayscale group-hover:grayscale-0"}`}
+                />
+                <span className="truncate">{item.label}</span>
+                {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_8px_rgba(79,70,229,0.6)]" />}
+            </button>
+        );
+    };
+
     return (
-      <button
-        onClick={() => {
-          setActiveItem(item.label);
-          // Ferme le sidebar sur mobile après sélection
-          if (window.innerWidth < 768) onClose();
-        }}
-        className={`flex items-center gap-2 px-2 py-2 rounded-lg text-sm font-medium transition-all duration-150 w-full text-left
-          ${isActive ? "bg-gray-100 text-gray-800" : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"}`}
-      >
-        <span className="text-gray-400 text-xs">›</span>
-        <img src={item.icon} alt={item.label} style={{ width: 24, height: 24 }} className="object-contain flex-shrink-0" />
-        <span className="truncate">{item.label}</span>
-      </button>
+        <>
+            {isOpen && <div className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 md:hidden" onClick={onClose} />}
+
+            <aside className={`fixed top-0 left-0 h-full z-50 bg-white flex flex-col p-5 border-r border-slate-200 w-64 transition-transform duration-300 ease-in-out
+          ${isOpen ? "translate-x-0" : "-translate-x-full"} md:static md:translate-x-0 md:h-screen`}>
+
+                {/* Logo Section */}
+                <div className="flex items-center gap-3 px-2 mb-10">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-200">
+                        <img src={logo} alt="L" className="w-5 h-5 brightness-200" />
+                    </div>
+                    <span className="font-black text-lg tracking-tight text-slate-900 uppercase">StudyLearn</span>
+                </div>
+
+                <div className="space-y-8">
+                    <div>
+                        <p className="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Menu Principal</p>
+                        <nav className="space-y-1">
+                            {mainNav.map((item) => <NavButton key={item.label} item={item} />)}
+                        </nav>
+                    </div>
+
+                    <div>
+                        <p className="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Préférences</p>
+                        <nav className="space-y-1">
+                            {secondaryNav.map((item) => <NavButton key={item.label} item={item} />)}
+                        </nav>
+                    </div>
+                </div>
+
+                {/* Upgrade Card (Petit plus pour le look) */}
+                <div className="mt-auto p-4 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-2xl text-white">
+                    <p className="text-xs font-bold opacity-80 mb-1">Passer en Pro</p>
+                    <p className="text-[10px] opacity-60 mb-3">Accédez à tous les certificats.</p>
+                    <button className="w-full py-2 bg-white text-indigo-600 text-[10px] font-black rounded-lg hover:bg-indigo-50 transition-colors">UPGRADE</button>
+                </div>
+            </aside>
+        </>
     );
-  };
-
-  return (
-    <>
-      {/* Overlay mobile */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 z-20 md:hidden"
-          onClick={onClose}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside
-        style={{
-          fontFamily: "'Inter', sans-serif",
-          borderRight: "0.5px solid rgba(0,0,0,0.1)",
-          transition: "transform 0.3s ease",
-          width: 212,
-        }}
-        className={`
-          fixed top-0 left-0 h-full z-30 bg-white flex flex-col p-4
-          ${isOpen ? "translate-x-0" : "-translate-x-full"}
-          md:static md:translate-x-0 md:h-screen md:flex md:flex-col
-        `}
-      >
-        {/* Logo + StudyLearn */}
-        <div style={{ marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
-          <img src={logo} alt="StudyLearn" style={{ width: 30, height: 31, objectFit: "contain" }} />
-          <span
-            style={{
-              width: 76,
-              height: 20,
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 600,
-              fontSize: 14,
-              lineHeight: "20px",
-              borderRadius: 12,
-              color: "#000000",
-              whiteSpace: "nowrap",
-            }}
-          >
-            StudyLearn
-          </span>
-        </div>
-
-        {/* Section principale */}
-        <div style={{ marginBottom: 8, marginTop: 24 }}>
-          <p
-            style={{
-              fontSize: 14,
-              fontWeight: 400,
-              lineHeight: "20px",
-              letterSpacing: 0,
-              color: "rgba(0,0,0,0.4)",
-              marginBottom: 8,
-            }}
-          >
-            Tableau de bord
-          </p>
-          <nav style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {mainNav.map((item) => (
-              <NavButton key={item.label} item={item} />
-            ))}
-          </nav>
-        </div>
-
-        {/* Séparateur */}
-        <div style={{ height: "0.5px", backgroundColor: "rgba(0,0,0,0.1)", margin: "24px 0" }} />
-
-        {/* Section secondaire */}
-        <nav style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {secondaryNav.map((item) => (
-            <NavButton key={item.label} item={item} />
-          ))}
-        </nav>
-      </aside>
-    </>
-  );
 }

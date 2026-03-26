@@ -1,12 +1,27 @@
-import './App.css';
-import Dashboard from './components/Dashboard';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./components/Login";
+import Layout from "./components/Layout.tsx";
+import Inscription from "./components/Inscription.tsx";
 
-export default function App() {
+import HomePage from "./components/HomePage.tsx";
+
+function App() {
     return (
-        <div className="App">
-            <Dashboard />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/inscription" element={<Inscription />} />
+                <Route path="/dashboard" element={<Layout />} />
+                <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+        </BrowserRouter>
+
+
     );
 }
+
+export default App;
+
 
 

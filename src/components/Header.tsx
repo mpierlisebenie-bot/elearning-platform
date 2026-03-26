@@ -1,6 +1,5 @@
 import iconPanneau from "../assets/icons/panneau.png";
 import iconFavoris from "../assets/icons/favoris.png";
-import iconHistorique from "../assets/icons/historique.png";
 import iconCloche from "../assets/icons/cloche.png";
 import iconRecherche from "../assets/icons/recherche.png";
 
@@ -9,159 +8,42 @@ type HeaderProps = {
 };
 
 export default function Header({ onMenuToggle }: HeaderProps) {
-  return (
-    <header
-      style={{
-        height: 64,
-        width: "100%",
-        borderBottom: "0.5px solid rgba(0,0,0,0.1)",
-        borderLeft: "0.5px solid rgba(0,0,0,0.1)",
-        borderBottomLeftRadius: 12,
-        paddingLeft: 16,
-        paddingRight: 24,
-        fontFamily: "'Inter', sans-serif",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        backgroundColor: "#ffffff",
-        boxSizing: "border-box",
-      }}
-    >
-      {/* Gauche : panneau + favoris + titre */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
+    return (
+        <header className="h-20 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-30">
+            <div className="flex items-center gap-4">
+                <button onClick={onMenuToggle} className="p-2 hover:bg-slate-100 rounded-xl transition-colors md:hidden">
+                    <img src={iconPanneau} alt="Menu" className="w-5 h-5 opacity-70" />
+                </button>
 
-        {/* Icône panneau latéral */}
-        <button
-          onClick={onMenuToggle}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", flexShrink: 0 }}
-        >
-          <img src={iconPanneau} alt="Panneau" style={{ width: 20, height: 20, objectFit: "contain" }} />
-        </button>
+                <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-2xl border border-transparent focus-within:border-indigo-200 focus-within:bg-white focus-within:ring-4 focus-within:ring-indigo-50 transition-all w-72">
+                    <img src={iconRecherche} alt="S" className="w-4 h-4 opacity-40" />
+                    <input
+                        type="text"
+                        placeholder="Rechercher un cours..."
+                        className="bg-transparent border-none outline-none text-sm text-slate-600 placeholder:text-slate-400 w-full font-medium"
+                    />
+                    <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[10px] font-bold text-slate-400 border border-slate-200 rounded-md bg-white">/</kbd>
+                </div>
+            </div>
 
-        {/* Icône favoris — cachée sur mobile */}
-        <button
-          className="hidden sm:flex"
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
-        >
-          <img src={iconFavoris} alt="Favoris" style={{ width: 20, height: 20, objectFit: "contain" }} />
-        </button>
+            <div className="flex items-center gap-3">
+                <button className="p-2.5 hover:bg-slate-50 rounded-xl border border-slate-100 transition-all relative group">
+                    <img src={iconCloche} alt="Notif" className="w-5 h-5 opacity-60 group-hover:opacity-100" />
+                    <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 border-2 border-white rounded-full"></span>
+                </button>
 
-        {/* Titre — caché sur très petit écran */}
-        <div
-          className="hidden sm:flex"
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            height: 36,
-            minWidth: 36,
-            minHeight: 36,
-            borderRadius: 16,
-            paddingTop: 8,
-            paddingBottom: 8,
-            paddingLeft: 16,
-            paddingRight: 16,
-            gap: 8,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              fontSize: 14,
-              lineHeight: "20px",
-              color: "rgba(0,0,0,0.6)",
-              whiteSpace: "nowrap",
-            }}
-          >
-            StudyLearn Dashboard
-          </span>
-        </div>
-      </div>
+                <div className="h-10 w-[1px] bg-slate-200 mx-2 hidden sm:block"></div>
 
-      {/* Droite : recherche + historique + cloche */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
-
-        {/* Barre de recherche — réduite sur mobile */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            gap: 8,
-            backgroundColor: "#0000000A",
-            borderRadius: 12,
-            paddingTop: 8,
-            paddingBottom: 8,
-            paddingLeft: 12,
-            paddingRight: 12,
-            height: 36,
-            opacity: 1,
-            boxSizing: "border-box",
-          }}
-          className="w-32 sm:w-[220px]"
-        >
-          <img
-            src={iconRecherche}
-            alt="Recherche"
-            style={{ width: 16, height: 16, objectFit: "contain", opacity: 0.4, flexShrink: 0 }}
-          />
-          <span
-            className="hidden sm:block"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 400,
-              fontSize: 12,
-              lineHeight: "16px",
-              color: "rgba(0,0,0,0.35)",
-              whiteSpace: "nowrap",
-              flex: 1,
-            }}
-          >
-            Recherche un cours
-          </span>
-
-          {/* Raccourci / */}
-          <div
-            className="hidden sm:flex"
-            style={{
-              width: 20,
-              height: 16,
-              alignItems: "center",
-              justifyContent: "center",
-              border: "1px solid rgba(0,0,0,0.2)",
-              borderRadius: 4,
-              flexShrink: 0,
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 400,
-                fontSize: 12,
-                lineHeight: "16px",
-                color: "rgba(0,0,0,0.2)",
-                textAlign: "center",
-              }}
-            >
-              /
-            </span>
-          </div>
-        </div>
-
-        {/* Historique */}
-        <button
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", flexShrink: 0 }}
-        >
-          <img src={iconHistorique} alt="Historique" style={{ width: 20, height: 20, objectFit: "contain" }} />
-        </button>
-
-        {/* Cloche */}
-        <button
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", flexShrink: 0 }}
-        >
-          <img src={iconCloche} alt="Notifications" style={{ width: 20, height: 20, objectFit: "contain" }} />
-        </button>
-      </div>
-    </header>
-  );
+                <div className="flex items-center gap-3 pl-2">
+                    <div className="text-right hidden sm:block">
+                        <p className="text-sm font-bold text-slate-900">Pierlise Benie</p>
+                        <p className="text-[10px] font-medium text-indigo-600">Étudiant Premium</p>
+                    </div>
+                    <div className="w-10 h-10 rounded-xl bg-slate-200 border-2 border-white shadow-sm overflow-hidden cursor-pointer hover:border-indigo-200 transition-all">
+                        <img src={iconFavoris} alt="Profil" className="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+        </header>
+    );
 }
