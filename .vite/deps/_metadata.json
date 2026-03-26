@@ -1,0 +1,46 @@
+{
+  "hash": "8292759e",
+  "configHash": "8798957c",
+  "lockfileHash": "925f5e3d",
+  "browserHash": "e727e61e",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "289796c9",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "328b1e7a",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "c0082578",
+      "needsInterop": true
+    },
+    "recharts": {
+      "src": "../../node_modules/recharts/es6/index.js",
+      "file": "recharts.js",
+      "fileHash": "bf4dd986",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "07654168",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-JQGNYJIG": {
+      "file": "chunk-JQGNYJIG.js"
+    },
+    "chunk-COGEVBLD": {
+      "file": "chunk-COGEVBLD.js"
+    }
+  }
+}
