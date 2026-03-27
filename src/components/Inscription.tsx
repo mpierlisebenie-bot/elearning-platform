@@ -91,7 +91,7 @@ const Inscription = () => {
                     </div>
                 </div>
 
-                {/* Section Droite : Formulaire */}
+
                 <div className="flex-1 p-8 lg:p-16">
                     <div className="max-w-md mx-auto">
                         <div className="mb-8">
@@ -132,7 +132,7 @@ const Inscription = () => {
                                 </div>
                             </div>
 
-                            {/* Email */}
+
                             <div className="space-y-1">
                                 <label className="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Email</label>
                                 <input
@@ -182,7 +182,7 @@ const Inscription = () => {
 
                         <p className="mt-8 text-center text-sm text-gray-500">
                             Déjà inscrit ?{" "}
-                            <a href="/login" className="text-indigo-600 font-bold hover:underline">
+                            <a onClick={() => navigate("/login")} className="text-indigo-600 font-bold hover:underline">
                                 Connectez-vous ici
                             </a>
                         </p>

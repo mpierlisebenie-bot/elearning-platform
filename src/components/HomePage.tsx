@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"
+import { useNavigate } from "react-router-dom";
+
 
 const COURSES = [
     { icon: "⚡", label: "Développement Web", count: "142 cours" },
@@ -16,6 +18,7 @@ const STATS = [
 ];
 
 export default function HomePage() {
+    const navigate = useNavigate();
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const heroRef = useRef<HTMLDivElement>(null);
     const [visible, setVisible] = useState(false);
@@ -38,7 +41,7 @@ export default function HomePage() {
             className="min-h-screen bg-slate-50 text-slate-900 overflow-x-hidden"
             style={{ fontFamily: "'Sora', sans-serif" }}
         >
-            {/* Google Font & Custom Styles */}
+
             <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,700&display=swap');
 
@@ -77,7 +80,7 @@ export default function HomePage() {
         }
       `}</style>
 
-            {/* ── NAV ── */}
+
             <nav className="flex items-center justify-between px-8 py-5 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
                 <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-600 to-indigo-400 shadow-lg shadow-indigo-200" />
@@ -85,17 +88,20 @@ export default function HomePage() {
                 </div>
                 <div className="hidden md:flex items-center gap-8 text-sm text-slate-500 font-semibold">
                     <a href="#" className="hover:text-indigo-600 transition-colors">Catalogue</a>
-                    <a href="#" className="hover:text-indigo-600 transition-colors">Parcours</a>
-                    <a href="#" className="hover:text-indigo-600 transition-colors">Tarifs</a>
                 </div>
                 <div className="flex items-center gap-4">
-                    <a href="/login" className="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">Connexion</a>
                     <a
-                        href="/inscription"
-                        className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-bold shadow-lg shadow-indigo-100 hover:bg-indigo-700 hover:scale-105 transition-all"
+                        onClick={() => navigate("/login")}
+                        className="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors cursor-pointer"
                     >
-                        S'inscrire
+                        Connexion
                     </a>
+                        <a
+                            onClick={() => navigate("/Inscription")}
+                            className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-bold shadow-lg shadow-indigo-100 hover:bg-indigo-700 hover:scale-105 transition-all cursor-pointer"
+                        >
+                            S'inscrire
+                        </a>
                 </div>
             </nav>
 
@@ -105,7 +111,7 @@ export default function HomePage() {
                 onMouseMove={handleMouseMove}
                 className="relative flex flex-col items-center justify-center text-center px-6 pt-28 pb-24 overflow-hidden bg-gradient-to-b from-white to-slate-50"
             >
-                {/* Glow blob following mouse (Indigo color) */}
+
                 <div
                     className="pointer-events-none absolute w-[600px] h-[600px] rounded-full opacity-[0.07] blur-[120px] transition-all duration-700"
                     style={{
@@ -116,7 +122,7 @@ export default function HomePage() {
                     }}
                 />
 
-                {/* Grid texture */}
+
                 <div className="absolute inset-0 opacity-[0.4] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#e2e8f0 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
                 {visible && (
@@ -154,7 +160,6 @@ export default function HomePage() {
 
 
 
-            {/* ── STATS ── */}
             <section className="flex flex-wrap justify-center gap-px bg-white border-y border-slate-200">
                 {STATS.map((s) => (
                     <div
@@ -167,7 +172,6 @@ export default function HomePage() {
                 ))}
             </section>
 
-            {/* ── CATEGORIES ── */}
             <section className="px-8 py-24 max-w-6xl mx-auto">
                 <div className="text-center md:text-left mb-16">
                     <p className="text-indigo-600 text-xs font-bold uppercase tracking-[0.2em] mb-3">
@@ -192,7 +196,6 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* ── CTA BANNER ── */}
             <section className="px-8 pb-32">
                 <div className="max-w-6xl mx-auto rounded-[3rem] bg-indigo-600 p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden shadow-2xl shadow-indigo-200">
                     <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -mr-20 -mt-20"></div>
@@ -207,7 +210,7 @@ export default function HomePage() {
                         </p>
                     </div>
                     <a
-                        href="/inscription"
+                        onClick={() => navigate("/Inscription")}
                         className="relative z-10 px-10 py-6 rounded-2xl bg-white text-indigo-600 font-black text-lg shadow-xl hover:scale-105 active:scale-95 transition-all"
                     >
                         Créer un compte →
@@ -215,7 +218,7 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* ── FOOTER ── */}
+
             <footer className="bg-white border-t border-slate-200 px-8 py-12">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-slate-400 text-sm font-medium">
                     <div className="flex items-center gap-3 text-slate-900 font-black text-lg">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 interface FormErrors {
     email?: string;
     password?: string;
@@ -15,7 +16,6 @@ const Login = () => {
     const [successMessage, setSuccessMessage] = useState("");
     const navigate = useNavigate();
 
-    // ... (Logique de validation inchangée pour la clarté)
     const validateEmail = (value: string) => {
         if (!value.trim()) return "L'email est obligatoire.";
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -63,7 +63,6 @@ const Login = () => {
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50 p-6">
             <div className="flex w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/20 animate-in fade-in zoom-in duration-500">
 
-                {/* Section Gauche : Illustration avec dégradé */}
                 <div className="hidden md:flex flex-1 bg-indigo-600 items-center justify-center p-12 relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-indigo-400/30 via-transparent to-transparent"></div>
                     <div className="relative z-10 text-center">
@@ -77,7 +76,6 @@ const Login = () => {
                     </div>
                 </div>
 
-                {/* Section Droite : Formulaire */}
                 <div className="flex-1 p-8 md:p-16">
                     <div className="max-w-sm mx-auto">
                         <div className="mb-10 text-center md:text-left">
@@ -94,7 +92,6 @@ const Login = () => {
                         )}
 
                         <form onSubmit={handleSubmit} noValidate className="space-y-6">
-                            {/* Input Email */}
                             <div className="group">
                                 <label className="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-indigo-600">
                                     Email
@@ -115,7 +112,6 @@ const Login = () => {
                                 {errors.email && <p className="mt-2 text-xs text-red-500 font-medium">{errors.email}</p>}
                             </div>
 
-                            {/* Input Password */}
                             <div>
                                 <div className="flex justify-between mb-2">
                                     <label className="text-sm font-semibold text-gray-700">Mot de passe</label>
@@ -159,7 +155,7 @@ const Login = () => {
 
                         <div className="mt-8 pt-8 border-t border-gray-100 text-center text-sm text-gray-500">
                             Nouveau ici ?{" "}
-                            <a href="/inscription" className="text-indigo-600 font-bold hover:underline transition-all">
+                            <a onClick={() => navigate("/Inscription")} className="text-indigo-600 font-bold hover:underline transition-all">
                                 Rejoignez-nous gratuitement
                             </a>
                         </div>
