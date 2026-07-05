@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* ── StudyLearn · système visuel ─────────────────────────────
+   Corps   : Sora (géométrique, moderne)
+   Display : Fraunces (serif éditorial — titres uniquement)
+   Fond    : blanc cassé chaud (moins clinique que le gris pur)
+──────────────────────────────────────────────────────────── */
+
+:root {
+  --sl-papier: #fafaf7;
+  --sl-encre: #101322;
+  --sl-indigo: #4f46e5;
+  --sl-indigo-profond: #312e81;
+  --sl-or: #c9a24b;
+}
+
+body {
+  font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Filet signature sous les titres : indigo → or */
+.title-rule {
+  display: block;
+  width: 56px;
+  height: 2px;
+  border-radius: 999px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, var(--sl-indigo), var(--sl-or));
+}
+
+/* Scrollbar discrète */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.25);
+  border-radius: 999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.45);
+}
+
+/* Accessibilité : focus clavier visible, animations réduites respectées */
+:focus-visible {
+  outline: 2px solid var(--sl-indigo);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
