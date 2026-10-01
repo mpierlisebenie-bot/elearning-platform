@@ -1,0 +1,17 @@
+node_modules/
+build/
+dist/
+# Config locale de l'outil Claude Code (machine-spécifique, pas du code applicatif)
+.claude/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+# Base de données locale (données réelles des utilisateurs — jamais commitées)
+# Ancré à la racine uniquement : ne doit pas ignorer src/data/ ou autre.
+/data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
